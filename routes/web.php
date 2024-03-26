@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
 use Database\Seeders\KategoriSeeder;
 use Illuminate\Support\Facades\Auth;
@@ -46,3 +47,5 @@ Route::get('/kategori/{id}/edit', [KategoriController::class,'edit'])->name('kat
 Route::put('/kategori/{id}/update',[KategoriController::class,'update'])->name('kategori.update');
 
 Route::get('/kategori/{id}/hapus',[KategoriController::class,'delete'])->name('kategori.delete');
+
+Route::resource('m_user', POSController::class);
