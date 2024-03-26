@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\KategoriDataTable;
 use App\Models\KategoriModel;
 use App\Models\m_kategori;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,48 +29,16 @@ class KategoriController extends Controller
     //     return view('kategori', ['data' => $data]);
     // }
 
-    public function index(KategoriDataTable $dataTable){
-        return $dataTable->render('kategori.index');
-    }
-
-    public function create(){
+    // 
+    public function create(){   
         return view('kategori.create');
-    }
+    }        
 
-    public function tambah_simpan(Request $request){
-        KategoriModel::create([
-            'kategori_kode'=> $request->kodeKategori,
-            'kategori_nama' => $request->namaKategori,
-        ]);
-        return redirect('/kategori');
-    }
-
-    public function edit($id)
-    {
-        $kategori = KategoriModel::findOrFail($id);
-        return view('kategori.edit', compact('kategori'));
-    }
-
-    public function update($id, Request $request)
-    {
-        $kategori = KategoriModel::findOrFail($id);
-        $request->validate([
+    public function store(Request $request): RedirectResponse{
+        $validated = $request->validateWithBag([
             'kategori_kode' => 'required',
             'kategori_nama' => 'required',
         ]);
-        $kategori->kategori_kode = $request->input('kodeKategori');
-        $kategori->kategori_nama = $request->input('namaKategori');
-        $kategori->save();
-
         return redirect('/kategori');
     }
-
-    public function delete($id)
-    {
-        $kategori = KategoriModel::find($id);
-        $kategori->delete();
-
-        return redirect('/kategori');
-    }
-
 }

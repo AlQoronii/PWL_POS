@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 Route::get('/level', [LevelController::class,'index']);
-Route::get('/kategori', [KategoriController::class,'index']);
+// Route::get('/kategori', [KategoriController::class,'index']);
 Route::get('/user',[UserController::class, 'index'])->name('user');
 Route::get('/user/tambah', [UserController::class, 'tambah'])->name('/user/tambah');
 Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->name('/user/tambah_simpan');
@@ -35,10 +35,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/kategori', [KategoriController::class,'index']);
+// Route::get('/kategori', [KategoriController::class,'index']);
 
-Route::get('/kategori/create',[KategoriController::class, 'create'])->name('kategori.tambah');
+// Route::get('/kategori/create',[KategoriController::class, 'create'])->name('kategori.tambah');
 Route::post('/kategori/tambah_simpan', [KategoriController::class,'tambah_simpan'])->name('kategori.simpan');
+Route::get('/kategori/create',[KategoriController::class,'create']);
+Route::post('/kategori',[KategoriController::class,'store']);
 
 Route::get('/kategori/{id}/edit', [KategoriController::class,'edit'])->name('kategori.edit');
 Route::put('/kategori/{id}/update',[KategoriController::class,'update'])->name('kategori.update');
