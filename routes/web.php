@@ -54,3 +54,16 @@ Route::resource('m_user', POSController::class);
 
 // Jobsheet - 7
 Route::get('/', [WelcomeController::class, 'index']);
+
+
+// Praktikum 3
+Route::group(['prefix'=> 'user'], function(){
+    Route::get('/',[UserController::class, 'index']);               // Menampilkan halaman user
+    Route::post('/list',[UserController::class, 'list']);           // Menampilkan data user dalam bentuk json untuk datatables
+    Route::get('/create',[UserController::class, 'create']);        // Menampilkan halaman form tambah user
+    Route::post('/',[UserController::class, 'store']);              // Menampilkan data user baru
+    Route::get('/{id}',[UserController::class, 'show']);            // Menampilkan detail user
+    Route::get('/{id}/edit',[UserController::class, 'edit']);       // Menampilkan halaman form edit user
+    Route::put('/{id}',[UserController::class, 'update']);          // Menyimpan perubahan data user
+    Route::delete('/{id}',[UserController::class, 'destroy']);      // Menghapus data user
+});
