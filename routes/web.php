@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Database\Seeders\KategoriSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,3 +50,7 @@ Route::put('/kategori/{id}/update',[KategoriController::class,'update'])->name('
 Route::get('/kategori/{id}/hapus',[KategoriController::class,'delete'])->name('kategori.delete');
 
 Route::resource('m_user', POSController::class);
+
+
+// Jobsheet - 7
+Route::get('/', [WelcomeController::class, 'index']);
