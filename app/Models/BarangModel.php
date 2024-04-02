@@ -23,4 +23,8 @@ class BarangModel extends Model
     public function stoks():HasMany{
         return $this->hasMany(StokModel::class);
     }
+
+    public function details():HasMany{
+        return $this->hasMany(DetailModel::class);
+    }
 }

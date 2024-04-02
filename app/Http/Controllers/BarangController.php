@@ -60,11 +60,11 @@ class BarangController extends Controller
         $page = (object)[
             'title' => 'Tambah Barang baru'        
         ];
-
+        $barang = BarangModel::all();
         $kategori = KategoriModel::all(); // ambil data barang untuk ditampilkan di form
         $activeMenu = 'barang'; //set menu yang sedang aktif
 
-        return view('barang.create', ['breadcrumb'=>$breadcrumb,'page'=>$page, 'kategori' => $kategori, 'activeMenu'=>$activeMenu]);
+        return view('barang.create', ['breadcrumb'=>$breadcrumb,'page'=>$page,'barang'=>$barang, 'kategori' => $kategori, 'activeMenu'=>$activeMenu]);
     }
 
 

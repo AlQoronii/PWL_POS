@@ -24,7 +24,6 @@ class StokController extends Controller
 
         $user = UserModel::all(); // ambil data level untuk filter level
         $barang = BarangModel::all();
-        $stok = StokModel::all();
         return view('stok.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'user'=>$user, 'barang'=>$barang,'activeMenu'=>$activeMenu]);
     }
 
@@ -36,10 +35,9 @@ class StokController extends Controller
         // Filter data stok bedasarkan level_id
         if ($request->user_id){
             $stoks->where('user_id',$request->user_id);
-        }
-        if ($request->barang_id){
+        }else if ($request->barang_id){
             $stoks->where('barang_id',$request->barang_id);
-        }
+        }   
         
 
                     

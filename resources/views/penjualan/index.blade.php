@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Filter:</label>
                     <div class="col-3">
-                        <select name="penjualan_id" id="penjualan_id" class="form-control" required>
+                        <select name="user_id" id="user_id" class="form-control" required>
                             <option value="">- Semua -</option>
                             @foreach($user as $item)
                                 <option value="{{$item->user_id}}">{{$item->username}}</option>

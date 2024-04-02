@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BarangModel;
 use App\Models\PenjualanModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
@@ -65,11 +66,12 @@ class PenjualanController extends Controller
             'title' => 'Tambah Penjualan baru'        
         ];
 
+        $barang = BarangModel::all();
         $user = UserModel::all(); // ambil data untuk filter 
 
         $activeMenu = 'penjualan'; //set menu yang sedang aktif
 
-        return view('penjualan.create', ['breadcrumb'=>$breadcrumb,'page'=>$page, 'user' => $user,'activeMenu'=>$activeMenu]);
+        return view('penjualan.create', ['breadcrumb'=>$breadcrumb,'page'=>$page, 'user' => $user,'barang'=>$barang,'activeMenu'=>$activeMenu]);
     }
 
 
@@ -77,6 +79,7 @@ class PenjualanController extends Controller
         $request->validate([
             'penjualan_kode'   => 'required|string|min:4|unique:t_penjualans,penjualan_kode',
             'user_id'         => 'required|integer',
+            'barang_id'        => 'required|integer',
             'penjualan_tanggal'    => 'required|date',
             'pembeli'     => 'required|string|max:100',
         ]);
@@ -84,6 +87,7 @@ class PenjualanController extends Controller
         PenjualanModel::create([
             'penjualan_kode'        => $request->penjualan_kode,
             'user_id'               => $request->user_id,
+            'barang_id'             => $request->barang_id,
             'penjualan_tanggal'     => $request->penjualan_tanggal,
             'pembeli'               => $request->pembeli,
         ]);
