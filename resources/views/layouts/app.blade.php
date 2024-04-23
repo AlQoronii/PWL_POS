@@ -108,7 +108,7 @@
     @yield('content_body')
    @stop
    {{-- Create a common footer --}}
-   @section('footer')
+   {{-- @section('footer')
     <div class="float-right">
     Version: {{ config('app.version', '1.0.0') }}
     </div>
@@ -117,7 +117,7 @@
     {{ config('app.company_name', 'My company') }}
     </a>
     </strong>
-   @stop
+   @stop --}}
    {{-- Add common Javascript/Jquery code --}}
    @push('js')
    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>

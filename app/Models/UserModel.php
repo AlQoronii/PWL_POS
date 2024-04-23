@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as AuthenticatableUser;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class UserModel extends Model
+
+
+class UserModel extends AuthenticatableUser implements Authenticatable
 {
     use HasFactory;
     protected $table = 'm_users';
@@ -26,4 +30,16 @@ class UserModel extends Model
     public function penjualans():HasMany{
         return $this->hasMany(PenjualanModel::class);
     }
+
+    public function getAuthIdentifierName()
+    {
+        return 'user_id';
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+
 }
