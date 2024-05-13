@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as AuthenticatableUser;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class UserModel extends AuthenticatableUser implements JWTSubject
@@ -27,7 +28,7 @@ class UserModel extends AuthenticatableUser implements JWTSubject
     protected $table = 'm_users';
     protected $primaryKey = 'user_id';
 
-    protected $fillable = ['user_id','level_id','username', 'nama', 'password'];
+    protected $fillable = ['user_id','level_id','username', 'nama', 'password', 'image'];
 
     public function level(): BelongsTo{
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
@@ -51,5 +52,11 @@ class UserModel extends AuthenticatableUser implements JWTSubject
         return $this->password;
     }
 
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) => url('/storage/posts/' . $image),
+        );
+    }
 
 }

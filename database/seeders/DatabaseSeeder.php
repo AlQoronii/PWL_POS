@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\BarangModel;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            LevelSeeder::class,
+            KategoriSeeder::class,
+            UserSeeder::class,
+            BarangSeeder::class,
+            PenjualanSeeder::class,
+            StokSeeder::class,
+            PenjualanDetailSeeder::class,
+        ]);
     }
 }

@@ -20,6 +20,6 @@ class DetailModel extends Model
     }
 
     public function penjualans():BelongsTo{
-        return $this->belongsTo(PenjualanModel::class,'penjualan_id','penjualan_id)')
+        return $this->belongsTo(PenjualanModel::class,'penjualan_id','penjualan_id)');
     }
 }
